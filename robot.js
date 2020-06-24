@@ -33,6 +33,59 @@ class Robot {
             throw invalidInstructionMsg;
         }
     }
+
+    readInstructions() {
+        this.instructions.split("").forEach(instruction => {
+            switch(instruction) {
+                case "L":
+                    this.turn("L");
+                    break;
+                case "R":
+                    this.turn("R");
+                    break;
+                case "F":
+                    this.forward();
+                    break;
+            }
+        });
+    }
+
+    turn(instruction) {
+        switch(this.orientation) {
+            case "N":
+                if(instruction === "L") {
+                    this.orientation = "W";
+                } else {
+                    this.orientation = "E";
+                }
+                break;
+            case "E":
+                if(instruction === "L") {
+                    this.orientation = "N";
+                } else {
+                    this.orientation = "S";
+                }
+                break;
+            case "S":
+                if(instruction === "L") {
+                    this.orientation = "E";
+                } else {
+                    this.orientation = "W";
+                }
+                break;
+            case "W":
+                if(instruction === "L") {
+                    this.orientation = "S";
+                } else {
+                    this.orientation = "N";
+                }
+                break;
+        }
+    }
+
+    forward() {
+        console.log("Forward called");
+    }
 }
 
 module.exports = Robot;
