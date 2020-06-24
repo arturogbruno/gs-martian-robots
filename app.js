@@ -9,3 +9,14 @@ if(gridSize.some(x => x >50 || x < 2)) {
 }
 
 console.log(gridSize);
+
+const robotsInput = input.slice(1);
+
+const robotsInfo = robotsInput.reduce((ac, cv, idx, arr) => {
+    if(idx % 2 === 0) {
+        ac.push(arr.slice(idx, idx + 2).join(" ").split(" "));
+    }
+    return ac;
+}, []);
+
+console.log(robotsInfo);
