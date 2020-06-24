@@ -1,5 +1,3 @@
-const Robot = require("./robot");
-
 const input = process.argv[2].split("\n");
 console.log(input);
 
@@ -12,6 +10,11 @@ if(gridSize.some(x => x >50 || x < 2)) {
 
 console.log(gridSize);
 
+exports.grid = {
+    sizeX: +gridSize[0],
+    sizeY: +gridSize[1]
+}
+
 const robotsInput = input.slice(1);
 
 const robotsInfo = robotsInput.reduce((ac, cv, idx, arr) => {
@@ -23,8 +26,9 @@ const robotsInfo = robotsInput.reduce((ac, cv, idx, arr) => {
 
 console.log(robotsInfo);
 
+const Robot = require("./robot");
+
 robotsInfo.forEach(robotInfo => {
     const robot = new Robot(robotInfo);
-    console.log(robot.posY);
-    console.log(robot.instructions);
+    robot.checkCoordinates();
 });
