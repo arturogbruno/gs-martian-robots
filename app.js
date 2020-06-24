@@ -1,3 +1,5 @@
+const Robot = require("./robot");
+
 const input = process.argv[2].split("\n");
 console.log(input);
 
@@ -20,3 +22,9 @@ const robotsInfo = robotsInput.reduce((ac, cv, idx, arr) => {
 }, []);
 
 console.log(robotsInfo);
+
+robotsInfo.forEach(robotInfo => {
+    const robot = new Robot(robotInfo);
+    console.log(robot.posY);
+    console.log(robot.instructions);
+});
