@@ -17,6 +17,10 @@ exports.grid = {
 }
 
 const robotsInput = input.slice(1);
+if(robotsInput.length % 2 !== 0) {
+    const invalidInfoMsg = "Info provided for robots is incomplete.";
+    throw invalidInfoMsg;
+}
 
 const robotsInfo = robotsInput.reduce((ac, cv, idx, arr) => {
     if(idx % 2 === 0) {
