@@ -31,9 +31,6 @@ const Robot = require("./robot");
 
 robotsInfo.forEach((robotInfo, idx) => {
     const robot = new Robot(robotInfo, idx);
-    robot.checkCoordinates();
-    robot.checkInstructions();
-    robot.readInstructions();
-    robot.showInfo();
+    robot.operateRobot();
     console.log(robot.posX, robot.posY, robot.orientation, robot.lost);
 });

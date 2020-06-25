@@ -12,6 +12,14 @@ class Robot {
         this.info = "";
     }
 
+    operateRobot() {
+        this.checkCoordinates();
+        this.checkInstructions();
+        this.readInstructions();
+        this.showInfo();
+        return this.info;
+    }
+
     checkCoordinates() {
         if (
             this.posX > grid.sizeX ||
