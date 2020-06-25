@@ -27,7 +27,9 @@ class Robot {
             const invalidLengthMsg = `Invalid instructions length. It should be less than 100 characters.`;
             throw invalidLengthMsg;
         }
-        const isInvalidInstruction = new RegExp("[^LRF]").test(this.instructions);
+        const isInvalidInstruction = new RegExp("[^LRF]").test(
+            this.instructions
+        );
         if (isInvalidInstruction) {
             const invalidInstructionMsg = `Invalid instruction provided. Only valid instructions are: L, R, F.`;
             throw invalidInstructionMsg;
@@ -35,9 +37,9 @@ class Robot {
     }
 
     readInstructions() {
-        this.instructions.split("").forEach(instruction => {
-            if(!this.lost) {
-                switch(instruction) {
+        this.instructions.split("").forEach((instruction) => {
+            if (!this.lost) {
+                switch (instruction) {
                     case "L":
                         this.turn("L");
                         break;
@@ -53,30 +55,30 @@ class Robot {
     }
 
     turn(instruction) {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case "N":
-                if(instruction === "L") {
+                if (instruction === "L") {
                     this.orientation = "W";
                 } else {
                     this.orientation = "E";
                 }
                 break;
             case "E":
-                if(instruction === "L") {
+                if (instruction === "L") {
                     this.orientation = "N";
                 } else {
                     this.orientation = "S";
                 }
                 break;
             case "S":
-                if(instruction === "L") {
+                if (instruction === "L") {
                     this.orientation = "E";
                 } else {
                     this.orientation = "W";
                 }
                 break;
             case "W":
-                if(instruction === "L") {
+                if (instruction === "L") {
                     this.orientation = "S";
                 } else {
                     this.orientation = "N";
@@ -86,19 +88,30 @@ class Robot {
     }
 
     forward() {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case "N":
-                this.posY === grid.sizeY ? this.loseRobot() : this.posY++;
+                this.posY === grid.sizeY ? this.checkScent() : this.posY++;
                 break;
             case "E":
-                this.posX === grid.sizeX ? this.loseRobot() = true : this.posX++;
+                this.posX === grid.sizeX ? this.checkScent() : this.posX++;
                 break;
             case "S":
-                this.posY === 0 ? this.loseRobot() : this.posY--;
+                this.posY === 0 ? this.checkScent() : this.posY--;
                 break;
             case "W":
-                thisX === 0 ? this.loseRobot() : this.posX--;
+                thisX === 0 ? this.checkScent() : this.posX--;
                 break;
+        }
+    }
+
+    checkScent() {
+        const positionArr = [this.posX, this.posY];
+        if (
+            !grid.scents.some((scentArr) =>
+                scentArr.every((coord, idx) => coord === positionArr[idx])
+            )
+        ) {
+            this.loseRobot();
         }
     }
 
