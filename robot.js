@@ -3,8 +3,8 @@ const { grid } = require("./app");
 class Robot {
     constructor(robotInfo) {
         const [posX, posY, orientation, instructions] = robotInfo;
-        this.posX = posX;
-        this.posY = posY;
+        this.posX = +posX;
+        this.posY = +posY;
         this.orientation = orientation;
         this.instructions = instructions;
         this.lost = false;
@@ -84,7 +84,20 @@ class Robot {
     }
 
     forward() {
-        console.log("Forward called");
+        switch(this.orientation) {
+            case "N":
+                this.posY++;
+                break;
+            case "E":
+                this.posX++;
+                break;
+            case "S":
+                this.posY--;
+                break;
+            case "W":
+                this.posX--;
+                break;
+        }
     }
 }
 

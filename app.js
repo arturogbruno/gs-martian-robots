@@ -33,5 +33,5 @@ robotsInfo.forEach(robotInfo => {
     robot.checkCoordinates();
     robot.checkInstructions();
     robot.readInstructions();
-    console.log(robot.orientation);
+    console.log(robot.posX, robot.posY, robot.orientation);
 });
