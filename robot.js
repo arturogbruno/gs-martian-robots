@@ -86,16 +86,16 @@ class Robot {
     forward() {
         switch(this.orientation) {
             case "N":
-                this.posY++;
+                this.posY === grid.sizeY ? this.lost = true : this.posY++;
                 break;
             case "E":
-                this.posX++;
+                this.posX === grid.sizeX ? this.lost = true : this.posX++;
                 break;
             case "S":
-                this.posY--;
+                this.posY === 0 ? this.lost = true : this.posY--;
                 break;
             case "W":
-                this.posX--;
+                thisX === 0 ? this.lost = true : this.posX--;
                 break;
         }
     }
