@@ -29,10 +29,11 @@ console.log(robotsInfo);
 
 const Robot = require("./robot");
 
-robotsInfo.forEach(robotInfo => {
-    const robot = new Robot(robotInfo);
+robotsInfo.forEach((robotInfo, idx) => {
+    const robot = new Robot(robotInfo, idx);
     robot.checkCoordinates();
     robot.checkInstructions();
     robot.readInstructions();
+    robot.showInfo();
     console.log(robot.posX, robot.posY, robot.orientation, robot.lost);
 });

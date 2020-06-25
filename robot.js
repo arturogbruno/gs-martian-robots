@@ -1,13 +1,15 @@
 const { grid } = require("./app");
 
 class Robot {
-    constructor(robotInfo) {
+    constructor(robotInfo, idx) {
         const [posX, posY, orientation, instructions] = robotInfo;
         this.posX = +posX;
         this.posY = +posY;
         this.orientation = orientation;
         this.instructions = instructions;
         this.lost = false;
+        this.robotId = `Robot ${idx + 1}`
+        this.info = "";
     }
 
     checkCoordinates() {
@@ -17,21 +19,21 @@ class Robot {
             this.posX < 0 ||
             this.posY < 0
         ) {
-            const invalidCoordinatesMsg = `Invalid coordinates given for robot. The grid's size is ${grid.sizeX}x${grid.sizeY}`;
+            const invalidCoordinatesMsg = `Invalid coordinates given for ${this.robotId} (X: ${this.posX}, Y: ${this.posY}). The grid's size is ${grid.sizeX}x${grid.sizeY}.`;
             throw invalidCoordinatesMsg;
         }
     }
 
     checkInstructions() {
         if (this.instructions.length >= 100) {
-            const invalidLengthMsg = `Invalid instructions length. It should be less than 100 characters.`;
+            const invalidLengthMsg = `Invalid instructions length for ${this.robotId}. It should be less than 100 characters.`;
             throw invalidLengthMsg;
         }
         const isInvalidInstruction = new RegExp("[^LRF]").test(
             this.instructions
         );
         if (isInvalidInstruction) {
-            const invalidInstructionMsg = `Invalid instruction provided. Only valid instructions are: L, R, F.`;
+            const invalidInstructionMsg = `Invalid instruction for ${this.robotId}. Only valid instructions are: L, R, F.`;
             throw invalidInstructionMsg;
         }
     }
@@ -119,6 +121,11 @@ class Robot {
         grid.scents.push([this.posX, this.posY]);
         this.lost = true;
         console.log(grid);
+    }
+
+    showInfo() {
+        this.info = `${this.posX} ${this.posY} ${this.orientation}${this.lost ? " LOST" : ""}`;
+        console.log(`* Final position ${this.robotId} --> ${this.info}`);
     }
 }
 
