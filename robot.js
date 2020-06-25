@@ -36,16 +36,18 @@ class Robot {
 
     readInstructions() {
         this.instructions.split("").forEach(instruction => {
-            switch(instruction) {
-                case "L":
-                    this.turn("L");
-                    break;
-                case "R":
-                    this.turn("R");
-                    break;
-                case "F":
-                    this.forward();
-                    break;
+            if(!this.lost) {
+                switch(instruction) {
+                    case "L":
+                        this.turn("L");
+                        break;
+                    case "R":
+                        this.turn("R");
+                        break;
+                    case "F":
+                        this.forward();
+                        break;
+                }
             }
         });
     }
@@ -86,18 +88,24 @@ class Robot {
     forward() {
         switch(this.orientation) {
             case "N":
-                this.posY === grid.sizeY ? this.lost = true : this.posY++;
+                this.posY === grid.sizeY ? this.loseRobot() : this.posY++;
                 break;
             case "E":
-                this.posX === grid.sizeX ? this.lost = true : this.posX++;
+                this.posX === grid.sizeX ? this.loseRobot() = true : this.posX++;
                 break;
             case "S":
-                this.posY === 0 ? this.lost = true : this.posY--;
+                this.posY === 0 ? this.loseRobot() : this.posY--;
                 break;
             case "W":
-                thisX === 0 ? this.lost = true : this.posX--;
+                thisX === 0 ? this.loseRobot() : this.posX--;
                 break;
         }
+    }
+
+    loseRobot() {
+        grid.scents.push([this.posX, this.posY]);
+        this.lost = true;
+        console.log(grid);
     }
 }
 

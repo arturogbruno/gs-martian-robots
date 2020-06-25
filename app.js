@@ -12,7 +12,8 @@ console.log(gridSize);
 
 exports.grid = {
     sizeX: +gridSize[0],
-    sizeY: +gridSize[1]
+    sizeY: +gridSize[1],
+    scents: []
 }
 
 const robotsInput = input.slice(1);
