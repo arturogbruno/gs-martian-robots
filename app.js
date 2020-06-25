@@ -33,8 +33,11 @@ console.log(robotsInfo);
 
 const Robot = require("./robot");
 
+let result = [];
+
 robotsInfo.forEach((robotInfo, idx) => {
     const robot = new Robot(robotInfo, idx);
-    robot.operateRobot();
-    console.log(robot.posX, robot.posY, robot.orientation, robot.lost);
+    result.push(robot.operateRobot());
 });
+
+console.log(result);
