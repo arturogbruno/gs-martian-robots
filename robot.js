@@ -1,4 +1,4 @@
-const { grid } = require("./app");
+const { grid } = require("./main");
 
 class Robot {
     constructor(robotInfo, idx) {
