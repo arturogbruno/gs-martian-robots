@@ -9,21 +9,21 @@ This is a NodeJS app to operate robots on the Mars' surface from your terminal. 
     - The grid's size (x, y). Maximum value is 50.
     - The initial position, orientation (N, S, E, W) and instructions for each robot. The only valid instructions are L (left), R (right) and F (forward). The instructions should be less than 100 characters long.
 
-This information should be provided with the following format:
+    This information should be provided with the following format:
 
-```
-5 3
-1 1 E
-RFRFRFRF
-3 2 N
-FRRFLLFFRRFLL
-0 3 W
-LLFFFLFLFL
-```
+    ```
+    5 3
+    1 1 E
+    RFRFRFRF
+    3 2 N
+    FRRFLLFFRRFLL
+    0 3 W
+    LLFFFLFLFL
+    ```
 
-Being the first line the grid size and each subsequent pair of lines include the info for a robot: initial position and orientation, and instructions on the other line.
+    Being the first line the grid size and each subsequent pair of lines include the info for a robot: initial position and orientation, and instructions on the other line.
 
-3. To run the app you have to enter ***node app.js*** followed by the required info. Example:
+3. To run the app you have to enter ***node app.js*** followed by the required info between quotes. Example:
 ```
 node app.js "5 3
 1 1 E
